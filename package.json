@@ -1,0 +1,19 @@
+{
+  "name": "auth-express",
+  "version": "1.0.0",
+  "description": "Practicing authentication using bcrypt in an express app having mongoose database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/regal-rahul/Auth-Express.git"
+  },
+  "author": "regal-rahul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/regal-rahul/Auth-Express/issues"
+  },
+  "homepage": "https://github.com/regal-rahul/Auth-Express#readme"
+}
