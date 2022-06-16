@@ -19,6 +19,13 @@ app.set('views', 'views');
 app.use(express.urlencoded({ extended: true }));
 app.use(session({ secret: 'notagoodsecret' }));
 
+const requireLogin = (req, res, next) => {
+    if (!req.session.user_id) {
+        return res.redirect('/login');
+    }
+    next();
+}
+
 
 app.get('/', (req, res) => {
     res.send('This is the Home page!');
@@ -56,8 +63,8 @@ app.post('/login', async (req, res) => {
 })
 
 app.post('/logout', (req, res) => {
-    // req.session.user_id = null;
-    req.session.destroy();
+    req.session.user_id = null;
+    // req.session.destroy();
     res.redirect('/login');
 })
 
@@ -66,13 +73,12 @@ app.post('/logout', (req, res) => {
 
 
 
-app.get('/secret', (req, res) => {
-    if (!req.session.user_id) {
-        return res.redirect('/login');
-    }
+app.get('/secret', requireLogin, (req, res) => {
     res.render('secret');
 });
-
+app.get('/topsecret', requireLogin, (req, res) => {
+    res.send('TOP SECRET!');
+})
 
 
 
