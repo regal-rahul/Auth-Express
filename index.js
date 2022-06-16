@@ -4,7 +4,6 @@ const User = require('./models/user');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-
 mongoose.connect('mongodb://localhost:27017/authDemo', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("CONNECTION OPEN!!!")
@@ -16,7 +15,6 @@ mongoose.connect('mongodb://localhost:27017/authDemo', { useNewUrlParser: true, 
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
-
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
@@ -26,7 +24,6 @@ app.get('/', (req, res) => {
 app.get('/register', (req, res) => {
     res.render('register');
 })
-
 app.post('/register', async (req, res) => {
     const { password, username } = req.body;
     const hash = await bcrypt.hash(password, 12);
@@ -42,7 +39,6 @@ app.post('/register', async (req, res) => {
 app.get('/login', (req, res) => {
     res.render('login')
 })
-
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
@@ -58,6 +54,8 @@ app.post('/login', async (req, res) => {
 app.get('/secret', (req, res) => {
     res.send('This is Secret!');
 })
+
+
 
 
 app.listen(3000, () => {
