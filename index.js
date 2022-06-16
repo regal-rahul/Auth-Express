@@ -3,6 +3,15 @@ const app = express();
 const User = require('./models/user');
 
 
+mongoose.connect('mongodb://localhost:27017/movieApp', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log("CONNECTION OPEN!!!")
+    })
+    .catch(err => {
+        console.log("OH NO ERROR!!!!")
+        console.log(err)
+    })
+
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
